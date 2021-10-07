@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colour Tool</title>
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="aditionalStyle.css" />
+</head>
+
+<body>
+  <div id="nav">
+    <ul>
+      <li><a href="index.html">Colour extactor</a></li>
+      <li><a href="palette.html">Colour palette</a></li>
+      <li><a href="history.html">History</a></li>
+    </ul>
+  </div>
+  <main>
+    <h1>Colour Extractor</h1>
+    <input id="input" type="file" accept="image/*">
+    <button id="btn">button</button>
+    <p>
+      <span class="box" id="pixelColor" data-label="Current Pixel"></span>
+      <!-- images are from pexels.com -->
+    <div id="canvas-container">
+      <canvas data-src="" id="canvas"></canvas>
+    </div>
+    </p>
+    <section class="colours">
+      <!-- saved colours here -->
+    </section>
+  </main>
+  <script src="main.js" defer></script>
+  <script src="imgUploader.js" defer></script>
+</body>
+
+</html>
