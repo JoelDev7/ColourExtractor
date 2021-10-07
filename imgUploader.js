@@ -15,7 +15,7 @@ window.onload = () => {
                 console.log(dim.width, dim.height)
                 APP.canvas.width = dim.width
                 APP.canvas.height = dim.height
-                if (dim.width < 1024, dim.height < 700) {
+                if (dim.width < 1024 || dim.height < 610) {
                     canvasContainer.style.overflow = "visible"
                 }
             }
@@ -24,10 +24,15 @@ window.onload = () => {
             document.getElementById('canvas-container').style.display = "block";
         }
     })
-
-    let button = document.getElementById('btn')
-    button.addEventListener('click', () => {
-        //canvas.setAttribute('data-src', '900flores.jpg')
-        //APP.init()
-    })
+    canvas.setAttribute('data-src', 'example.jpg')
+    APP.init()
+    APP.canvas.width = 1024
+    APP.canvas.height = 600;
+    document.getElementById('canvas-container').style.display = "block";
+    canvasContainer.style.overflow = "hidden"
 }
+
+// window.addEventListener('load', () => {
+
+
+// })

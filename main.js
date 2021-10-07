@@ -119,4 +119,3 @@ const APP = {
   },
 };
 
-// document.addEventListener('DOMContentLoaded', APP.init);

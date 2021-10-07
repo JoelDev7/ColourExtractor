@@ -36,3 +36,8 @@ function selected() {
     const num = document.getElementById('number').value
     palette(start, end, num)
 }
+
+function resetPalette() {
+    palette('#593F62', '#009FB7', 6);
+    document.getElementById('number').value = 6;
+}
