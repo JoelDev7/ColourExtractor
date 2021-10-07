@@ -17,9 +17,20 @@
             <li><a href="history.html">History</a></li>
         </ul>
     </div>
-    <div id="colour1"></div>
-    <div id="colour2"></div>
-    <button onclick="palette('#593F62', '#009FB7', 4)">Creare palette</button>
+    <div class="controls">
+        <div id="colour1"></div>
+        <div id="colour2"></div>
+        <button onclick="palette('#593F62', '#009FB7', 4)">Creare palette</button>
+        <button onclick="elementExist()">exist</button>
+        <select onchange="selected()" name="number" id="number">
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6" selected>6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+    </div>
     <div class="palette-container"></div>
     <script src="palette.js" defer></script>
     <script src="chroma.min.js" defer></script>

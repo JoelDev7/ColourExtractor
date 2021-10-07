@@ -1,7 +1,7 @@
 #colour1, #colour2{
     width: 20px;
     height: 20px;
-    border: 1px solid black;
+    border-radius: 5px;
 }
 
 body {
