@@ -4,7 +4,6 @@ const APP = {
   data: [],
   img: null,
   init() {
-    console.log('init')
     APP.canvas = document.querySelector('main canvas');
     APP.ctx = APP.canvas.getContext('2d');
     APP.img = document.createElement('img');
@@ -103,19 +102,21 @@ const APP = {
     let colours = document.querySelector('.colours');
     let pixel = document.createElement('span');
     pixel.className = 'box';
-    pixel.setAttribute('data-label', 'Exact pixel');
-    pixel.setAttribute('data-color', APP.pixel);
-
+    //pixel.setAttribute('data-label', 'Exact pixel');
+    pixel.setAttribute('data-color', chroma(APP.pixel).hex());
     let average = document.createElement('span');
     average.className = 'box';
-    average.setAttribute('data-label', 'Average');
-    average.setAttribute('data-color', APP.average);
-
+    //average.setAttribute('data-label', 'Average');
+    average.setAttribute('data-color', chroma(APP.average).hex());
     pixel.style.backgroundColor = APP.pixel;
     average.style.backgroundColor = APP.average;
+    pixel.addEventListener('click', () => {
+      localStorage.setItem('start', pixel.getAttribute('data-color'))
+    })
+    average.addEventListener('click', () => {
+      localStorage.setItem('end', average.getAttribute('data-color'))
+    })
     colours.append(pixel, average);
-
-
   },
 };
 

@@ -31,8 +31,3 @@ window.onload = () => {
     document.getElementById('canvas-container').style.display = "block";
     canvasContainer.style.overflow = "hidden"
 }
-
-// window.addEventListener('load', () => {
-
-
-// })

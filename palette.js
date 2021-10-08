@@ -18,13 +18,14 @@ function palette(startColor, endColor, numColors) {
         colorHolder.style.width = `${100 / numColors}%`
         colorHolder.style.backgroundColor = `${color}`
         colorHolder.setAttribute('class', 'color-holder')
-        colorHolder.innerHTML = `${color}`
+        colorHolder.innerHTML = `<span>${color}</span>`
         container.append(colorHolder)
     })
 }
 
 window.onload = () => {
     palette('#593F62', '#009FB7', 6)
+    loadColors()
 }
 
 function elementExist() {
@@ -40,4 +41,11 @@ function selected() {
 function resetPalette() {
     palette('#593F62', '#009FB7', 6);
     document.getElementById('number').value = 6;
+}
+
+function loadColors() {
+    if (localStorage.getItem('start') !== null && localStorage.getItem('end') !== null) {
+        palette(localStorage.getItem('start'), localStorage.getItem('end'), 6)
+        console.log(localStorage.getItem('end'))
+    }
 }
