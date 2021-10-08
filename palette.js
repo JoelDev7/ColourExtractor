@@ -17,8 +17,13 @@ function palette(startColor, endColor, numColors) {
         let colorHolder = document.createElement('div')
         colorHolder.style.width = `${100 / numColors}%`
         colorHolder.style.backgroundColor = `${color}`
+        console.log(chroma(color).luminance());
         colorHolder.setAttribute('class', 'color-holder')
-        colorHolder.innerHTML = `<span>${color}</span>`
+        if (chroma(color).luminance() > .3) {
+            colorHolder.setAttribute('class', 'color-holder text-dark')
+            console.log('dark');
+        }
+        colorHolder.innerHTML = `${color}`
         container.append(colorHolder)
     })
 }
@@ -27,6 +32,8 @@ window.onload = () => {
     palette('#593F62', '#009FB7', 6)
     loadColors()
 }
+
+
 
 function elementExist() {
     const element = document.querySelectorAll('.color-holder')
