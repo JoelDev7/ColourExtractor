@@ -34,7 +34,6 @@ window.onload = () => {
 }
 
 
-
 function elementExist() {
     const element = document.querySelectorAll('.color-holder')
     console.log(element.length)

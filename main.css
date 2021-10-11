@@ -63,7 +63,7 @@ main p canvas {
   /* text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 1px #000; */
   font-size: 0.8rem;
   content: attr(data-label);
-  position: absolute;
+  /* position: absolute; */
   width: 150px;
   top: 5px;
   left: 5px;

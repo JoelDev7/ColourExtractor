@@ -17,6 +17,8 @@ window.onload = () => {
                 APP.canvas.height = dim.height
                 if (dim.width < 1024 || dim.height < 610) {
                     canvasContainer.style.overflow = "visible"
+                } else {
+                    canvasContainer.style.overflow = "scroll"
                 }
             }
             canvas.setAttribute('data-src', `${reader.result}`)
