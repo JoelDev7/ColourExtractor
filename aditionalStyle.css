@@ -1,6 +1,6 @@
 #canvas-container {
-    max-width: 1024px;
-    max-height: 1024px;
+    max-width: 1200px;
+    max-height: 600px;
     overflow: scroll;
     text-align: center;
     margin-left: auto;
@@ -10,4 +10,64 @@
 
 #pixelColor {
     display: none;
+}
+
+.selected {
+    background-color: #eee;
+    color: #222 !important;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+
+#nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+#nav {
+    display: flex;
+    justify-content: end;
+    background-color: #222;
+    border-radius: 15px;
+    padding-right: 30px;
+}
+
+#nav ul li a {
+    color: #eee;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 600;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-weight: 400;
+}
+
+.options {
+    background-color: #222;
+}
+
+.controls {
+    background-color: #222;
+    margin: 3px 5px;
+    text-decoration: none;
+    color: #eee;
+    padding: 0px 5px;
+    border-radius: 3px;
+    opacity: 80%;
 }

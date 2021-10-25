@@ -3,8 +3,8 @@ const APP = {
   ctx: null,
   data: [],
   img: null,
+  colors: [],
   init() {
-    console.log('init')
     APP.canvas = document.querySelector('main canvas');
     APP.ctx = APP.canvas.getContext('2d');
     APP.img = document.createElement('img');
@@ -103,20 +103,68 @@ const APP = {
     let colours = document.querySelector('.colours');
     let pixel = document.createElement('span');
     pixel.className = 'box';
-    pixel.setAttribute('data-label', 'Exact pixel');
-    pixel.setAttribute('data-color', APP.pixel);
-
+    //pixel.setAttribute('data-label', 'Exact pixel');
+    pixel.setAttribute('data-color', chroma(APP.pixel).hex());
     let average = document.createElement('span');
     average.className = 'box';
-    average.setAttribute('data-label', 'Average');
-    average.setAttribute('data-color', APP.average);
-
+    //average.setAttribute('data-label', 'Average');
+    average.setAttribute('data-color', chroma(APP.average).hex());
     pixel.style.backgroundColor = APP.pixel;
     average.style.backgroundColor = APP.average;
+    pixel.addEventListener('click', () => {
+      localStorage.setItem('start', pixel.getAttribute('data-color'))
+    })
+    average.addEventListener('click', () => {
+      localStorage.setItem('end', average.getAttribute('data-color'))
+    })
+    let p = pixel.getAttribute('data-color')
+    let a = average.getAttribute('data-color')
+    APP.colors.push({ px: p, avg: a })
+    // console.log(APP.colors)
+    let controlStart = document.createElement('a')
+    controlStart.addEventListener('click',
+      localStorage.setItem('start', pixel.getAttribute('data-color'))
+    )
+    controlStart.setAttribute('href', 'javascript:;')
+    controlStart.setAttribute('class', 'controls')
+    controlStart.innerHTML = 'start'
+    let controlEnd = document.createElement('a')
+    controlEnd.addEventListener('click',
+      localStorage.setItem('end', pixel.getAttribute('data-color'))
+    )
+    controlEnd.setAttribute('href', 'javascript:;')
+    controlEnd.setAttribute('class', 'controls')
+    controlEnd.innerHTML = 'end'
+    let control1Start = document.createElement('a')
+    control1Start.addEventListener('click',
+      localStorage.setItem('start', average.getAttribute('data-color'))
+    )
+    control1Start.setAttribute('href', 'javascript:;')
+    control1Start.setAttribute('class', 'controls')
+    control1Start.innerHTML = 'start'
+    let control1End = document.createElement('a')
+    control1End.addEventListener('click',
+      localStorage.setItem('end', average.getAttribute('data-color'))
+    )
+    control1End.setAttribute('href', 'javascript:;')
+    control1End.setAttribute('class', 'controls')
+    control1End.innerHTML = 'end'
+    pixel.append(controlStart)
+    pixel.append(controlEnd)
+    average.append(control1Start)
+    average.append(control1End)
     colours.append(pixel, average);
-
-
   },
 };
 
-// document.addEventListener('DOMContentLoaded', APP.init);
+// window.addEventListener('unload', () => {
+//   APP.colors.length > 0 ? localStorage.setItem('colors', APP.colors) : localStorage.setItem('colors', null);
+//   console.log('unloading')
+// })
+
+// window.addEventListener('load', () => {
+//   if (localStorage.getItem('colors') !== null) {
+//     console.log(localStorage.getItem('colors'));
+//   }
+//   // console.log('loading');
+// })
