@@ -1,7 +1,6 @@
 const staticContentCacheName = 'colex-statcon-v1';
 const dynamicContentCacheName = 'colex-dyncon-v1'
 const staticAssets = [
-    './',
     './index.html',
     './app.js',
     './chroma.min.js',
