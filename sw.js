@@ -1,49 +1,29 @@
-const staticContentCacheName = 'colex-statcon-v1';
-const dynamicContentCacheName = 'colex-dyncon-v1'
-const staticAssets = [
-    './index.html',
-    './app.js',
-    './chroma.min.js',
-    './example.jpg',
-    './main.js',
-    './main.css',
-    './imgUploader.js',
-    'aditionalStyle.css'
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.2.0/workbox-sw.js');
 
-]
-self.addEventListener('install', (evt) => {
-    // console.log('service worker installed');
-    evt.waitUntil(caches.open(staticContentCacheName)
-        .then(cache => {
-            console.log('saving appshell');
-            cache.addAll(staticAssets)
-        }))
-})
+workbox.precaching.precacheAndRoute(
+    [
+        { url: './index.html', revision: null },
+        { url: './app.js', revision: null },
+        { url: './js/chroma.min.js', revision: null },
+        { url: './example.jpg', revision: null },
+        { url: './js/main.js', revision: null },
+        { url: './css/main.css', revision: null },
+        { url: './js/imgUploader.js', revision: null },
+        { url: './css/aditionalStyle.css', revision: null },
+        { url: './manifest.webmanifest', revision: null },
+        { url: './offline.html', revision: null },
+        { url: './css/offline.css', revision: null }
+    ]
+);
 
-self.addEventListener('activate', (evt) => {
-    // console.log('service worker activated');
-    evt.waitUntil(
-        caches.keys().then(keys => {
-            return Promise.all(keys
-                .filter(key => { key !== staticContentCacheName && dynamicContentCacheName })
-                .map(key => caches.delete(key)))
-        })
-    )
-})
+workbox.routing.registerRoute(
+    new RegExp('[^\/]+\.html|[^\/]+\.css|[^\/]+\.js|[^\/]+\.png'),
+    new workbox.strategies.CacheFirst()
+);
 
-self.addEventListener('fetch', (evt) => {
-    // console.log('fetch', evt);
-    evt.respondWith(
-        caches.match(evt.request)
-            .then((cachRes) => {
-                return cachRes || fetch(evt.request)
-                    .then(fetchRes => {
-                        return caches.open(dynamicContentCacheName)
-                            .then(cache => {
-                                cache.put(evt.request.url, fetchRes.clone())
-                                return fetchRes
-                            })
-                    })
-            })
-    )
+workbox.routing.setCatchHandler(async context => {
+    if (context.request.destination === 'document') {
+        return workbox.precaching.matchPrecache('offline.html')
+    }
+    return Response.error();
 })
