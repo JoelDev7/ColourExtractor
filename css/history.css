@@ -19,6 +19,43 @@ body {
     font-weight: 500;
 }
 
+.palette-container {
+    width: 800px;
+    height: 200px;
+    background-color: #333;
+    border-radius: 20px;
+}
+
+.pal-cont {
+    border-radius: 5px;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.color-box {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.col-cont {
+    float: left;
+
+}
+
+.text-dark{
+    color: #222;
+}
+
+.gen-cont {
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #nav ul li {
     display: inline-block;
     margin-right: 20px;

@@ -23,7 +23,6 @@
         <span>End</span>
         <div id="colour2"></div>
         <a href="" role="button" class="button-light" onclick="resetPalette()">Reset</a>
-        <!-- <button onclick="palette('#111', '#555', 6)">Reset</button> -->
         <span>Display</span>
         <select class="num-selector" onchange="selected()" name="number" id="number">
             <option value="3">3</option>
@@ -33,7 +32,7 @@
             <option value="7">7</option>
             <option value="8">8</option>
         </select>
-        <a href="" class="button-light">Save palette</a>
+        <a href="javascript:void(0)" onclick="saveCurrentPalette()" class="button-light">Save palette</a>
     </div>
     <div class="palette-container"></div>
     <script src="./js/palette.js" defer></script>

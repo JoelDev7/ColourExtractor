@@ -1,5 +1,6 @@
 let start;
 let end;
+let currentPalette;
 function palette(startColor, endColor, numColors) {
     start = startColor;
     end = endColor;
@@ -8,6 +9,7 @@ function palette(startColor, endColor, numColors) {
     colour1.style.backgroundColor = startColor;
     colour2.style.backgroundColor = endColor;
     let palette = chroma.scale([`${startColor}`, `${endColor}`]).mode('lch').colors(numColors)
+    currentPalette = palette;
     let container = document.querySelector('.palette-container')
     const element = document.querySelectorAll('.color-holder')
     element.forEach((element) => {
@@ -17,11 +19,9 @@ function palette(startColor, endColor, numColors) {
         let colorHolder = document.createElement('div')
         colorHolder.style.width = `${100 / numColors}%`
         colorHolder.style.backgroundColor = `${color}`
-        console.log(chroma(color).luminance());
         colorHolder.setAttribute('class', 'color-holder')
         if (chroma(color).luminance() > .3) {
             colorHolder.setAttribute('class', 'color-holder text-dark')
-            console.log('dark');
         }
         colorHolder.innerHTML = `${color}`
         container.append(colorHolder)
@@ -52,6 +52,22 @@ function resetPalette() {
 function loadColors() {
     if (localStorage.getItem('start') !== null && localStorage.getItem('end') !== null) {
         palette(localStorage.getItem('start'), localStorage.getItem('end'), 6)
-        console.log(localStorage.getItem('end'))
+    }
+}
+
+function saveCurrentPalette() {
+    let palettes = {};
+    if (localStorage.getItem('savedPalettes') !== null) {
+        let aux = {};
+        aux[Date.now()] = currentPalette;
+        let container = JSON.parse(localStorage.getItem('savedPalettes'));
+        const join = Object.assign(container, aux); /* Object.assign() merges two or more objects but 
+        it mainstains a reference to the original objects so if you modify one of the original objects
+        your object result will be modified too.
+        */
+        localStorage.setItem('savedPalettes', JSON.stringify(join));
+    } else {
+        palettes[Date.now()] = currentPalette;
+        localStorage.setItem('savedPalettes', JSON.stringify(palettes));
     }
 }
